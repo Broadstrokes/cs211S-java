@@ -1,6 +1,6 @@
 import java.math.BigDecimal;
 
-public class CheckingAccount extends AccountImpl {
+public class CheckingAccount extends AccountImpl implements Comparable<CheckingAccount> { // M2 HOMEWORK COMPARETO
 
     public CheckingAccount(String userId, String accountId, BigDecimal initialDeposit) {
         super(userId, accountId, initialDeposit);
@@ -43,7 +43,8 @@ public class CheckingAccount extends AccountImpl {
             " | Account Id: "   + getAccountId() +
             " | Balance: "      + getBalance() +
             " | Date opened? "  + getAccountOpeningDate() +
-            " | Is overdrawn? " + isOverdrawn()
+            " | Is overdrawn? " + isOverdrawn() +
+            "\n"
         );
     }
 
@@ -58,4 +59,17 @@ public class CheckingAccount extends AccountImpl {
         return false;
     }
 
+    /**
+     * Compares based on an account's ID
+     * @param otherAccount the account to compare
+     * @return int returns the different between the current account's ID
+     * and the otherAccount's ID
+     */
+    @Override
+    public int compareTo(CheckingAccount otherAccount) { // M2 HOMEWORK COMPARETO
+        int accountId1 = Integer.parseInt(this.getAccountId());
+        int accountId2 = Integer.parseInt(otherAccount.getAccountId());
+
+        return Integer.compare(accountId1, accountId2);
+    }
 }

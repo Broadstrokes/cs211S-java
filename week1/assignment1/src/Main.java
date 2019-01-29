@@ -84,6 +84,9 @@ public class Main {
         // testSavingsAccount();
         // testBrokerageAccount();
 
+
+
+        testCheckingAccountCompareToMethod(); // M2 HOMEWORK COMPARETO
     }
 
 
@@ -163,6 +166,29 @@ public class Main {
 
         println(account1.isPortfolioEmpty());
 
+    }
+
+
+    public static void testCheckingAccountCompareToMethod() {
+        println(">>>>>>>>>>> testCheckingAccountCompareToMethod >>>>>>>>>>>>>>>>>");
+        CheckingAccount account1 = new CheckingAccount("1", "12", new BigDecimal(300));
+        CheckingAccount account2 = new CheckingAccount("23", "8", new BigDecimal(300));
+        CheckingAccount account3 = new CheckingAccount("21", "31", new BigDecimal(300));
+        CheckingAccount account4 = new CheckingAccount("8", "50", new BigDecimal(300));
+        CheckingAccount account5 = new CheckingAccount("9", "14", new BigDecimal(300));
+
+        ArrayList<CheckingAccount> checkingAccounts = new ArrayList<>();
+        checkingAccounts.add(account1);
+        checkingAccounts.add(account2);
+        checkingAccounts.add(account3);
+        checkingAccounts.add(account4);
+        checkingAccounts.add(account5);
+
+        println(">>>>>>>>>>>>>>>>><<<<<<<<<<<<");
+        System.out.println(checkingAccounts);
+        Collections.sort(checkingAccounts);
+        System.out.println(checkingAccounts);
+        println(">>>>>>>>>>>>>>>>><<<<<<<<<<<<");
     }
 
 
