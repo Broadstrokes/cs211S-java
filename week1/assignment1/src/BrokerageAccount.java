@@ -2,11 +2,13 @@ import java.math.BigDecimal;
 import java.util.*;
 
 public class BrokerageAccount extends AccountImpl{
+    private AccountType accountType;
 
     Set<String> stocksInPortfolio = new HashSet<String>();
 
     public BrokerageAccount(String userId, String accountId, BigDecimal initialDeposit) {
         super(userId, accountId, initialDeposit);
+        this.accountType = AccountType.BROKERAGE; // M2 HOMEWORK ENUM USE
     }
 
 
@@ -14,6 +16,9 @@ public class BrokerageAccount extends AccountImpl{
         GETTERS & SETTERS
      */
 
+    public AccountType getAccountType() { // M2 HOMEWORK ENUM USE
+        return accountType;
+    }
 
     /**
      * Add a stock to the portfolio

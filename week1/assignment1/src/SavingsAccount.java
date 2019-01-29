@@ -1,7 +1,8 @@
 import java.math.BigDecimal;
 
 public class SavingsAccount extends CheckingAccount {
-    private static BigDecimal accountFee = new BigDecimal(5.99);
+    private static BigDecimal accountFee = new BigDecimal(5.99); // M2 HOMEWORK STATIC
+    private static int numSavingsAccountInstances = 0;
     private BigDecimal interestRate;
     private BigDecimal savingsTarget;
     private BigDecimal minBalanceThreshold;
@@ -12,6 +13,8 @@ public class SavingsAccount extends CheckingAccount {
         this.interestRate = interestRateInDecimal;
         this.minBalanceThreshold = minBalanceThreshold;
         this.savingsTarget = savingsTarget;
+        SavingsAccount.numSavingsAccountInstances++;
+        this.setAccountType(AccountType.SAVINGS); // M2 HOMEWORK ENUM USE
     }
 
 
@@ -19,11 +22,12 @@ public class SavingsAccount extends CheckingAccount {
         GETTERS & SETTERS
      */
 
-    public static BigDecimal getAccountFee() {
+
+    public static BigDecimal getAccountFee() { // M2 HOMEWORK STATIC
         return SavingsAccount.accountFee;
     }
 
-    public static void setAccountFee(BigDecimal accountFee) {
+    public static void setAccountFee(BigDecimal accountFee) { // M2 HOMEWORK STATIC
         SavingsAccount.accountFee = accountFee;
     }
 
@@ -83,7 +87,13 @@ public class SavingsAccount extends CheckingAccount {
         return this.getBalance().compareTo(minBalanceThreshold) < 0;
     }
 
-
+    /**
+     * Get the number of savings account instances
+     * @return int indicating the number of savings account instances
+     */
+    public static int getNumSavingsAccountInstances() { // M2 HOMEWORK STATIC
+        return SavingsAccount.numSavingsAccountInstances;
+    }
 
     /*
         OVERRIDES

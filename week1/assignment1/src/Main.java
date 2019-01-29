@@ -1,5 +1,6 @@
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Main {
 
@@ -9,6 +10,9 @@ public class Main {
         ArrayList<AccountImpl> accounts = new ArrayList<AccountImpl>();
 
         CheckingAccount checking1 = new CheckingAccount("10", "22", new BigDecimal(300));
+
+        println("# of Savings Account Instances: " + SavingsAccount.getNumSavingsAccountInstances());
+
         SavingsAccount savings1 = new SavingsAccount("22", "8", new BigDecimal(300), new BigDecimal(0.1), new BigDecimal(5000.0), new BigDecimal(15000));
         BrokerageAccount brokerage1 = new BrokerageAccount("23", "4", new BigDecimal(300));
 
@@ -30,17 +34,21 @@ public class Main {
 
                 downCastAccount.withdraw(new BigDecimal(1000));
                 println(downCastAccount.toString());
+                println("Account type >>>> : " + downCastAccount.getAccountType());
 
                 println("Is account overdrawn? " + downCastAccount.isOverdrawn());
             } else if (account instanceof SavingsAccount) {
                 println(">>>>>>>> SAVINGS ACCOUNT");
                 SavingsAccount downCastAccount = (SavingsAccount) account;
                 println(downCastAccount.toString());
+                println("<<<<<<<<<" + SavingsAccount.getNumSavingsAccountInstances());
 
                 downCastAccount.deposit(new BigDecimal(500));
                 println(downCastAccount.toString());
 
                 println("Interest on account: " + downCastAccount.calculateInterest());
+                println("Account type >>>> : " + downCastAccount.getAccountType()); // M2 HOMEWORK ENUM USE
+                println("Account alerts priority >>>> : " + downCastAccount.getAccountType().getAlertsPriority()); // M2 HOMEWORK ENUM USE
 
                 downCastAccount.deposit(new BigDecimal(500));
                 println(downCastAccount.toString());
@@ -55,6 +63,7 @@ public class Main {
                 BrokerageAccount downCastAccount = (BrokerageAccount) account;
                 println(downCastAccount.toString());
                 println("Interest on account: " + downCastAccount.isPortfolioEmpty());
+                println("Account type >>>> : " + downCastAccount.getAccountType());
 
                 downCastAccount.addStockToPortfolio("SPY");
                 downCastAccount.addStockToPortfolio("AAPL");
