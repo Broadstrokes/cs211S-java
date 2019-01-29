@@ -13,6 +13,10 @@ public class CheckingAccount extends AccountImpl implements Comparable<CheckingA
         return accountType;
     }
 
+    public void setAccountType(AccountType accountType) { // M2 HOMEWORK ENUM USE
+        this.accountType = accountType;
+    }
+
 
     /**
      * Increments current account balance

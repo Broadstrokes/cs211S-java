@@ -14,6 +14,7 @@ public class SavingsAccount extends CheckingAccount {
         this.minBalanceThreshold = minBalanceThreshold;
         this.savingsTarget = savingsTarget;
         SavingsAccount.numSavingsAccountInstances++;
+        this.setAccountType(AccountType.SAVINGS); // M2 HOMEWORK ENUM USE
     }
 
 
