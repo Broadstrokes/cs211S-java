@@ -102,11 +102,11 @@ public class SavingsAccount extends CheckingAccount {
     public String toString() {
         return String.format(
                 "Id: "              + getUserId() +
-                        " | Balance: "      + getBalance() +
-                        " | Date opened? "  + getAccountOpeningDate() +
-                        " | Is overdrawn? " + isOverdrawn() +
-                        " | Saving target Met? " + isSavingsTargetMet() +
-                        " | Balance below threshold? " + isBelowThreshold()
+                " | Balance: "      + getBalance() +
+                " | Date opened? "  + getAccountOpeningDate() +
+                " | Is overdrawn? " + isOverdrawn() +
+                " | Saving target Met? " + isSavingsTargetMet() +
+                " | Balance below threshold? " + isBelowThreshold()
         );
     }
 
