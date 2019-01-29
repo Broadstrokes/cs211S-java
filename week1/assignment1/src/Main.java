@@ -22,9 +22,9 @@ public class Main {
         accounts.add(brokerage1);
 
         accounts.forEach(account -> {
-            System.out.println("");
-            System.out.println("Acccount Info: " + account.toString());
-            System.out.println("");
+            println("");
+            println("Acccount Info: " + account.toString());
+            println("");
 
             if (account instanceof CheckingAccount && !(account instanceof SavingsAccount)) {
                 println(">>>>>>>> CHECKING ACCOUNT");
@@ -35,7 +35,6 @@ public class Main {
                 downCastAccount.withdraw(new BigDecimal(1000));
                 println(downCastAccount.toString());
                 println("Account type >>>> : " + downCastAccount.getAccountType());
-
                 println("Is account overdrawn? " + downCastAccount.isOverdrawn());
             } else if (account instanceof SavingsAccount) {
                 println(">>>>>>>> SAVINGS ACCOUNT");
@@ -194,9 +193,9 @@ public class Main {
         checkingAccounts.add(account5);
 
         println(">>>>>>>>>>>>>>>>><<<<<<<<<<<<");
-        System.out.println(checkingAccounts);
+        println(checkingAccounts);
         Collections.sort(checkingAccounts);
-        System.out.println(checkingAccounts);
+        println(checkingAccounts);
         println(">>>>>>>>>>>>>>>>><<<<<<<<<<<<");
     }
 
