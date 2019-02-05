@@ -95,6 +95,9 @@ public class Main {
 
 
         testCheckingAccountCompareToMethod(); // M2 HOMEWORK COMPARETO
+        testNewAccountFactoryMethod(); // M3 USING FACTORY
+
+
     }
 
 
@@ -197,6 +200,18 @@ public class Main {
         Collections.sort(checkingAccounts);
         println(checkingAccounts);
         println(">>>>>>>>>>>>>>>>><<<<<<<<<<<<");
+    }
+
+
+    public static void testNewAccountFactoryMethod() {  // M3 USING FACTORY
+        println(">>>>>>>>>>> testNewAccountFactoryMethod >>>>>>>>>>>>>>>>>");
+        ArrayList<Account> accountList = new ArrayList<>();
+        accountList.add(AccountImpl.newAccount("23", "8", new BigDecimal(300), AccountType.CHECKING));
+        accountList.add(AccountImpl.newAccount("9", "33", new BigDecimal(1000), AccountType.SAVINGS));
+        accountList.add(AccountImpl.newAccount("9", "33", new BigDecimal(1000), AccountType.BROKERAGE));
+
+        println(accountList);
+
     }
 
 

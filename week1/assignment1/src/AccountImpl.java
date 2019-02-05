@@ -13,15 +13,37 @@ public class AccountImpl implements Account {
         CONSTRUCTORS
      */
 
-    public AccountImpl(String userId, String accountId, BigDecimal initialBalance) {
+    public AccountImpl(String userId, String accountId, BigDecimal initialDeposit) {
         this.userId = userId;
         this.accountId = accountId;
-        this.balance = initialBalance;
+        this.balance = initialDeposit;
         this.accountOpeningDate = new Date();
     }
 
     public AccountImpl(String userId, String accountId) {
         this(userId, accountId, new BigDecimal(0));
+    }
+
+
+    /*
+        FACTORY METHOD
+     */
+
+
+    public static Account newAccount(String userId, String accountId, BigDecimal initialDeposit, AccountType type) {
+        Account a;
+
+        if (type.name() == "CHECKING") {
+            a = new CheckingAccount(userId, accountId, initialDeposit);
+        } else if (type.name() == "SAVINGS") {
+            a = new SavingsAccount(userId, accountId, initialDeposit, new BigDecimal(0.25), new BigDecimal(2000), new BigDecimal(5000));
+        } else if (type.name() == "BROKERAGE") {
+            a = new BrokerageAccount(userId, accountId, initialDeposit);
+        } else {
+            throw new IllegalArgumentException();
+        }
+
+        return a;
     }
 
     /*
