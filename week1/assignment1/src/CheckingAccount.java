@@ -2,9 +2,11 @@ import java.math.BigDecimal;
 
 public class CheckingAccount extends AccountImpl implements Comparable<CheckingAccount> { // M2 HOMEWORK COMPARETO
     private AccountType accountType; // M2 HOMEWORK ENUM USE
+    private Fees fee;
+
 
     public CheckingAccount(String userId, String accountId, BigDecimal initialDeposit) {
-        super(userId, accountId, initialDeposit);
+        super(userId, accountId, initialDeposit, new CheckingsFee());
         this.accountType = AccountType.CHECKING; // M2 HOMEWORK ENUM USE
     }
 

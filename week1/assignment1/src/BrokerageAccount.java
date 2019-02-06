@@ -7,7 +7,7 @@ public class BrokerageAccount extends AccountImpl{
     Set<String> stocksInPortfolio = new HashSet<String>();
 
     public BrokerageAccount(String userId, String accountId, BigDecimal initialDeposit) {
-        super(userId, accountId, initialDeposit);
+        super(userId, accountId, initialDeposit, new BrokerageFee());
         this.accountType = AccountType.BROKERAGE; // M2 HOMEWORK ENUM USE
     }
 
