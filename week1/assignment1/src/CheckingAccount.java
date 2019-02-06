@@ -1,8 +1,17 @@
 import java.math.BigDecimal;
+import java.util.Comparator;
 
 public class CheckingAccount extends AccountImpl implements Comparable<CheckingAccount> { // M2 HOMEWORK COMPARETO
     private AccountType accountType; // M2 HOMEWORK ENUM USE
-    private Fees fee;
+
+    public final static Comparator<CheckingAccount> USER_ID_COMPARATOR = new CheckingAccountUserIdComparator();
+
+    private static class CheckingAccountUserIdComparator implements Comparator<CheckingAccount> { // M3 USING COMPARATOR
+        @Override
+        public  int compare(CheckingAccount a1, CheckingAccount a2) {
+            return a1.getUserId().compareTo(a2.getUserId());
+        }
+    }
 
 
     public CheckingAccount(String userId, String accountId, BigDecimal initialDeposit) {

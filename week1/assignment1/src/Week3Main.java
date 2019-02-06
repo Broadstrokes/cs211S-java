@@ -8,6 +8,9 @@ public class Week3Main {
         println(">>>> Starting Week 3 Main driver");
 
         testStrategyPattern(); // M3 USING STRATEGY
+        testCheckingAccountComparator(); // M3 USING COMPARATOR
+    }
+
     }
 
 
@@ -18,6 +21,24 @@ public class Week3Main {
         BrokerageAccount brokerage1 = new BrokerageAccount("23", "4", new BigDecimal(300));
         checking1.generateAccountFees();
         brokerage1.generateAccountFees();
+    }
+
+
+    public static void testCheckingAccountComparator() {
+        println(">>>>>>>>>>> testCheckingAccountComparator >>>>>>>>>>>>>>>>>");
+        CheckingAccount account1 = new CheckingAccount("23", "31", new BigDecimal(300));
+        CheckingAccount account2 = new CheckingAccount("23", "12", new BigDecimal(300));
+        CheckingAccount account3 = new CheckingAccount("21", "31", new BigDecimal(300));
+
+        ArrayList<CheckingAccount> checkingAccounts = new ArrayList<>();
+        checkingAccounts.add(account1);
+        checkingAccounts.add(account2);
+        checkingAccounts.add(account3);
+
+
+        println(checkingAccounts);
+        Collections.sort(checkingAccounts, CheckingAccount.USER_ID_COMPARATOR);
+        println(checkingAccounts);
     }
 
     /*
