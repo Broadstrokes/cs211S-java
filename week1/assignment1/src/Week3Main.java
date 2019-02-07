@@ -7,10 +7,34 @@ public class Week3Main {
     public static void main(String[] args) {
         println(">>>> Starting Week 3 Main driver");
 
+        testBuilderPattern(); // M3 USING BUILDER
         testStrategyPattern(); // M3 USING STRATEGY
         testCheckingAccountComparator(); // M3 USING COMPARATOR
     }
 
+
+    public static void testBuilderPattern() {  // M3 USING BUILDER
+        println(">>>>>>>>>>> testBuilderPattern >>>>>>>>>>>>>>>>>");
+        BigDecimal dummyInterestRate = new BigDecimal(0.75);
+        BigDecimal dummySavingsTarget = new BigDecimal(20000);
+
+        AccountBuilder savingsAccount = new AccountBuilder.SavingsAccountBuilder("9", "33", new BigDecimal(1000))
+                .interestRate(dummyInterestRate)
+                .build();
+
+        println(savingsAccount.toString());
+        println(savingsAccount.isSavingsTargetMet());
+        println(savingsAccount.getSavingsTarget());
+
+
+        AccountBuilder savingsAccount2 = new AccountBuilder.SavingsAccountBuilder("21", "88", new BigDecimal(25000))
+                .interestRate(dummyInterestRate)
+                .savingsTarget(dummySavingsTarget)
+                .build();
+
+        println(savingsAccount2.toString());
+        println(savingsAccount2.isSavingsTargetMet());
+        println(savingsAccount2.getSavingsTarget());
     }
 
 

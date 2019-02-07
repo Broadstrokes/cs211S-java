@@ -7,14 +7,20 @@ public class SavingsAccount extends CheckingAccount {
     private BigDecimal savingsTarget;
     private BigDecimal minBalanceThreshold;
 
+
     public SavingsAccount(String userId, String accountId, BigDecimal initialDeposit, BigDecimal interestRateInDecimal, BigDecimal minBalanceThreshold, BigDecimal savingsTarget) {
-        super(userId, accountId, initialDeposit);
+        this(userId, accountId, initialDeposit);
 
         this.interestRate = interestRateInDecimal;
         this.minBalanceThreshold = minBalanceThreshold;
         this.savingsTarget = savingsTarget;
-        SavingsAccount.numSavingsAccountInstances++;
+    }
+
+    public SavingsAccount(String userId, String accountId, BigDecimal initialDeposit) {
+        super(userId, accountId, initialDeposit);
+
         this.setAccountType(AccountType.SAVINGS); // M2 HOMEWORK ENUM USE
+        SavingsAccount.numSavingsAccountInstances++;
     }
 
 
