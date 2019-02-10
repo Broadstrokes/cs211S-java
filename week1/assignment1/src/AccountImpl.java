@@ -7,21 +7,22 @@ public class AccountImpl implements Account {
     private String userId;
     private BigDecimal balance;
     private Date accountOpeningDate;
-
+    private Fees fee;
 
     /*
         CONSTRUCTORS
      */
 
-    public AccountImpl(String userId, String accountId, BigDecimal initialDeposit) {
+    public AccountImpl(String userId, String accountId, BigDecimal initialDeposit, Fees fee) {
         this.userId = userId;
         this.accountId = accountId;
         this.balance = initialDeposit;
         this.accountOpeningDate = new Date();
+        this.fee = fee;
     }
 
-    public AccountImpl(String userId, String accountId) {
-        this(userId, accountId, new BigDecimal(0));
+    public AccountImpl(String userId, String accountId, Fees fee) {
+        this(userId, accountId, new BigDecimal(0), fee);
     }
 
 
@@ -30,7 +31,7 @@ public class AccountImpl implements Account {
      */
 
 
-    public static Account newAccount(String userId, String accountId, BigDecimal initialDeposit, AccountType type) {
+    public static Account newAccount(String userId, String accountId, BigDecimal initialDeposit, AccountType type) { // M3 USING FACTORY
         Account a;
 
         if (type.name() == "CHECKING") {
@@ -104,5 +105,9 @@ public class AccountImpl implements Account {
         }
 
         return false;
+    }
+
+    public void generateAccountFees() {
+        fee.generateAccountFees();
     }
 }
