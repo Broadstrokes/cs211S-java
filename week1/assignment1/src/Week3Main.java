@@ -7,11 +7,22 @@ public class Week3Main {
     public static void main(String[] args) {
         println(">>>> Starting Week 3 Main driver");
 
+        testNewAccountFactoryMethod(); // M3 USING FACTORY
         testBuilderPattern(); // M3 USING BUILDER
         testStrategyPattern(); // M3 USING STRATEGY
         testCheckingAccountComparator(); // M3 USING COMPARATOR
     }
 
+
+    public static void testNewAccountFactoryMethod() {  // M3 USING FACTORY
+        println(">>>>>>>>>>> testNewAccountFactoryMethod >>>>>>>>>>>>>>>>>");
+        ArrayList<Account> accountList = new ArrayList<>();
+        accountList.add(AccountImpl.newAccount("23", "8", new BigDecimal(300), AccountType.CHECKING));
+        accountList.add(AccountImpl.newAccount("9", "33", new BigDecimal(1000), AccountType.SAVINGS));
+        accountList.add(AccountImpl.newAccount("30", "33", new BigDecimal(1000), AccountType.BROKERAGE));
+
+        println(accountList);
+    }
 
     public static void testBuilderPattern() {  // M3 USING BUILDER
         println(">>>>>>>>>>> testBuilderPattern >>>>>>>>>>>>>>>>>");
@@ -70,16 +81,18 @@ public class Week3Main {
      */
 
     public static void println(Object line) { System.out.println(line); }
+
     public static void print(Object line) { System.out.print(line); }
 
     /**
      * Function to test an expectation
+     *
      * @param expression     Expectation/Expression to test, which returns a boolean
      * @param successMessage String to output to the user if the expectation is met
      * @param errorMessage   String to output to the user if the expectation is not met
      * @param should         String stating what should be tested
      */
-    public static void test (boolean expression, String successMessage, String errorMessage, String should) {
+    public static void test(boolean expression, String successMessage, String errorMessage, String should) {
         System.out.print(should + ": ");
 
         if (expression)
