@@ -1,6 +1,8 @@
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -9,6 +11,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class M4Practice extends Application {
+    // Control instance variables
+    private Button button;
+    private Text helloText;
 
 
     @Override
@@ -20,10 +25,16 @@ public class M4Practice extends Application {
         // Pane can serve as a root node
         Pane pane = new FlowPane();
 
-        Text helloText = new Text("Hello world!!");
+        helloText = new Text("Hello world!!");
         helloText.setFont(Font.font("Times New Roman", 20));
         helloText.setFill(Color.RED);
         pane.getChildren().add(helloText);
+
+        button = new Button("Click here");
+        button.setOnAction(this::handleButton);
+
+        pane.getChildren().add(button);
+
 
         Scene scene = new Scene(pane, 300, 300, Color.BEIGE);
 
@@ -31,6 +42,10 @@ public class M4Practice extends Application {
         primaryStage.setTitle("Title");
         primaryStage.show();
 
+    }
+
+    private void handleButton(ActionEvent event) {
+        helloText.setText("Hello universe!!!");
     }
 
     public static void main(String[] args) { launch(args); }
