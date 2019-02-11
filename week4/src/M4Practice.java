@@ -4,6 +4,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -20,6 +21,8 @@ public class M4Practice extends Application {
         Pane pane = new FlowPane();
 
         Text helloText = new Text("Hello world!!");
+        helloText.setFont(Font.font("Times New Roman", 20));
+        helloText.setFill(Color.RED);
         pane.getChildren().add(helloText);
 
         Scene scene = new Scene(pane, 300, 300, Color.BEIGE);
