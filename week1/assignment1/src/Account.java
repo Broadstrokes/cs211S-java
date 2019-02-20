@@ -6,4 +6,6 @@ public interface Account {
     public String getAccountId();
     public BigDecimal getBalance();
     public Date getAccountOpeningDate();
+    public boolean isOverdrawn();
+    public AccountType getAccountType();
 }

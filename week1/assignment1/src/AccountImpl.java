@@ -8,6 +8,7 @@ public class AccountImpl implements Account {
     private BigDecimal balance;
     private Date accountOpeningDate;
     private Fees fee;
+    private AccountType accountType;
 
     /*
         CONSTRUCTORS
@@ -75,6 +76,11 @@ public class AccountImpl implements Account {
         this.balance = amount;
     }
 
+    public AccountType getAccountType() { return accountType; }
+
+    public void setAccountType(AccountType accountType) { this.accountType = accountType; }
+
+
     public Date getAccountOpeningDate() {
         return accountOpeningDate;
     }
@@ -82,6 +88,16 @@ public class AccountImpl implements Account {
     public void setAccountOpeningDate(Date accountOpeningDate) {
         this.accountOpeningDate = accountOpeningDate;
     }
+
+
+    /**
+     * Checks if account is overdrawn
+     * @return boolean if true then account is overdrawn
+     */
+    public boolean isOverdrawn() {
+        return this.getBalance().compareTo(new BigDecimal("0")) < 0;
+    }
+
 
     /*
         OVERRIDES
