@@ -92,17 +92,18 @@ public class CustomerInput extends Application {
                         Customer customer = new Customer(id, numOrders);
                         println(customer);
                         customers.add(customer);
+                        statusText.setText("Number of users created: "  + customers.size());
+                        resultText.setText("Number of orders: "  + totalNumOrder);
+                        statusText.setVisible(true);
+                        resultText.setVisible(true);
+                        uploadButton.setDisable(true);
                     } catch (IllegalArgumentException e) {
                         e.printStackTrace();
+                        uploadButton.setDisable(false);
                     }
                 }
             }
 
-            statusText.setText("Number of users created: "  + customers.size());
-            resultText.setText("Number of orders: "  + totalNumOrder);
-            statusText.setVisible(true);
-            resultText.setVisible(true);
-            uploadButton.setDisable(true);
 
             fileScan.close();
         } catch (IOException e) {
