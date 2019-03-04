@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.*;
+
 import javafx.application.*;
 import javafx.event.*;
 import javafx.geometry.Pos;
@@ -69,15 +70,66 @@ public class CustomerInput extends Application {
         fileChooser.getExtensionFilters().add(extFilter);
         File file = fileChooser.showOpenDialog(primaryStage);
         parseFile(file);
-
     }
 
     private void parseFile(File file) {
-       // ??? YOUR CODE HERE        
+        try {
+            FileReader fileReader = new FileReader(file);
+            Scanner fileScan = new Scanner(fileReader);
+
+            while (fileScan.hasNext()) {
+                String line = fileScan.nextLine();
+                println(line);
+            }
+
+            fileScan.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+
+
+
+    /*
+        HELPER FUNCTIONS
+     */
+
+    public static void println(Object line) { System.out.println(line); }
+
+    public static void print(Object line) { System.out.print(line); }
+
+    public static void printDashes() { println("----------------------------"); }
+
+    public static void printNameOfCurrMethod() {
+        String nameOfCurrMethod =
+                new Throwable()
+                        .getStackTrace()[1]
+                        .getMethodName();
+
+        println("*********** Running: " + nameOfCurrMethod + " **************");
+    }
+
+    /**
+     * Function to test an expectation
+     *
+     * @param expression     Expectation/Expression to test, which returns a boolean
+     * @param successMessage String to output to the user if the expectation is met
+     * @param errorMessage   String to output to the user if the expectation is not met
+     * @param should         String stating what should be tested
+     */
+    public static void test(boolean expression, String successMessage, String errorMessage, String should) {
+        System.out.print(should + ": ");
+
+        if (expression)
+            System.out.println(successMessage);
+        else
+            System.out.println(errorMessage);
     }
 
 }
