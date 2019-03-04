@@ -79,7 +79,12 @@ public class CustomerInput extends Application {
 
             while (fileScan.hasNext()) {
                 String line = fileScan.nextLine();
-                println(line);
+                Scanner lineScan = new Scanner(line);
+                lineScan.useDelimiter(",");
+                while (lineScan.hasNext()) {
+                    String s = lineScan.next();
+                    println(s);
+                }
             }
 
             fileScan.close();
