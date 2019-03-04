@@ -84,15 +84,17 @@ public class CustomerInput extends Application {
                 String line = fileScan.nextLine();
                 Scanner lineScan = new Scanner(line);
                 lineScan.useDelimiter(",");
-//                lineScan.nextLine(); // move past the column header row NB: Only do this if you are confident about your data
                 while (lineScan.hasNext()) {
                     String id = lineScan.next();
-                    int numOrders = Integer.parseInt(lineScan.next());
-                    totalNumOrder += numOrders;
-
-                    Customer customer = new Customer(id, numOrders);
-                    println(customer);
-                    customers.add(customer);
+                    try {
+                        int numOrders = Integer.parseInt(lineScan.next());
+                        totalNumOrder += numOrders;
+                        Customer customer = new Customer(id, numOrders);
+                        println(customer);
+                        customers.add(customer);
+                    } catch (IllegalArgumentException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
 
