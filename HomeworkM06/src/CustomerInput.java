@@ -70,10 +70,13 @@ public class CustomerInput extends Application {
         fileChooser.getExtensionFilters().add(extFilter);
         File file = fileChooser.showOpenDialog(primaryStage);
         parseFile(file);
+
     }
 
     private void parseFile(File file) {
         try {
+            ArrayList<Customer> customers = new ArrayList<>();
+            int totalNumOrder = 0;
             FileReader fileReader = new FileReader(file);
             Scanner fileScan = new Scanner(fileReader);
 
@@ -81,11 +84,23 @@ public class CustomerInput extends Application {
                 String line = fileScan.nextLine();
                 Scanner lineScan = new Scanner(line);
                 lineScan.useDelimiter(",");
+//                lineScan.nextLine(); // move past the column header row NB: Only do this if you are confident about your data
                 while (lineScan.hasNext()) {
-                    String s = lineScan.next();
-                    println(s);
+                    String id = lineScan.next();
+                    int numOrders = Integer.parseInt(lineScan.next());
+                    totalNumOrder += numOrders;
+
+                    Customer customer = new Customer(id, numOrders);
+                    println(customer);
+                    customers.add(customer);
                 }
             }
+
+            statusText.setText("Number of users created: "  + customers.size());
+            resultText.setText("Number of orders: "  + totalNumOrder);
+            statusText.setVisible(true);
+            resultText.setVisible(true);
+            uploadButton.setDisable(true);
 
             fileScan.close();
         } catch (IOException e) {
