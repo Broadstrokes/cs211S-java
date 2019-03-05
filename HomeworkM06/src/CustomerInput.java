@@ -87,13 +87,19 @@ public class CustomerInput extends Application {
                 Scanner lineScan = new Scanner(line);
                 lineScan.useDelimiter(",");
                 while (lineScan.hasNext()) {
-                    String id = lineScan.next();
                     try {
+                        String id = lineScan.next();
+                        if (id.contains("@")) {
+                            throw new InvalidCustomerIdException();
+                        }
+
                         int numOrders = Integer.parseInt(lineScan.next());
                         totalNumOrder += numOrders;
+
                         Customer customer = new Customer(id, numOrders);
-                        println(customer);
                         customers.add(customer);
+                        println(customer);
+
                         statusText.setText("Number of users created: "  + customers.size());
                         resultText.setText("Number of orders: "  + totalNumOrder);
                         statusText.setVisible(true);
@@ -102,10 +108,13 @@ public class CustomerInput extends Application {
                     } catch (NumberFormatException e) { // Situation 1
                         e.printStackTrace();
                         uploadButton.setDisable(false);
+                    } catch (InvalidCustomerIdException e) {
+                        System.out.println(" >>>>>>>> Invalid customer id read from file");
+                        e.printStackTrace();
                     }
                 }
             }
-        } catch (IOException e) { // Situation 3
+        } catch (FileNotFoundException e) { // Situation 3
             e.printStackTrace();
         } finally {
             if (fileScan != null) {
