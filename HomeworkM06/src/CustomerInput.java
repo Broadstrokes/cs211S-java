@@ -89,6 +89,7 @@ public class CustomerInput extends Application {
                 while (lineScan.hasNext()) {
                     try {
                         String id = lineScan.next();
+
                         if (id.contains("@")) {
                             throw new InvalidCustomerIdException();
                         }
@@ -98,19 +99,23 @@ public class CustomerInput extends Application {
 
                         Customer customer = new Customer(id, numOrders);
                         customers.add(customer);
-                        println(customer);
 
                         statusText.setText("Number of users created: "  + customers.size());
                         resultText.setText("Number of orders: "  + totalNumOrder);
-                        statusText.setVisible(true);
-                        resultText.setVisible(true);
                         uploadButton.setDisable(true);
-                    } catch (NumberFormatException e) { // Situation 1
+                    }
+                    catch (NumberFormatException | InvalidCustomerIdException e) { // Situation 1 & 2
+                        if (e.getClass().getCanonicalName() == "java.lang.NumberFormatException") {
+                            statusText.setText("Number input is not of type integer");
+                        } else if (e.getClass().getCanonicalName() == "InvalidCustomerIdException") {
+                            statusText.setText("Customer id contains invalid character: @");
+                        }
                         e.printStackTrace();
                         uploadButton.setDisable(false);
-                    } catch (InvalidCustomerIdException e) {
-                        System.out.println(" >>>>>>>> Invalid customer id read from file");
-                        e.printStackTrace();
+                    }
+                    finally {
+                        statusText.setVisible(true);
+                        resultText.setVisible(true);
                     }
                 }
             }
@@ -121,50 +126,9 @@ public class CustomerInput extends Application {
                 fileScan.close();
             }
         }
-
     }
 
     public static void main(String[] args) {
         launch(args);
     }
-
-
-
-
-    /*
-        HELPER FUNCTIONS
-     */
-
-    public static void println(Object line) { System.out.println(line); }
-
-    public static void print(Object line) { System.out.print(line); }
-
-    public static void printDashes() { println("----------------------------"); }
-
-    public static void printNameOfCurrMethod() {
-        String nameOfCurrMethod =
-                new Throwable()
-                        .getStackTrace()[1]
-                        .getMethodName();
-
-        println("*********** Running: " + nameOfCurrMethod + " **************");
-    }
-
-    /**
-     * Function to test an expectation
-     *
-     * @param expression     Expectation/Expression to test, which returns a boolean
-     * @param successMessage String to output to the user if the expectation is met
-     * @param errorMessage   String to output to the user if the expectation is not met
-     * @param should         String stating what should be tested
-     */
-    public static void test(boolean expression, String successMessage, String errorMessage, String should) {
-        System.out.print(should + ": ");
-
-        if (expression)
-            System.out.println(successMessage);
-        else
-            System.out.println(errorMessage);
-    }
-
 }
