@@ -74,11 +74,13 @@ public class CustomerInput extends Application {
     }
 
     private void parseFile(File file) {
+        Scanner fileScan = null;
+
         try {
             ArrayList<Customer> customers = new ArrayList<>();
             int totalNumOrder = 0;
             FileReader fileReader = new FileReader(file);
-            Scanner fileScan = new Scanner(fileReader);
+            fileScan = new Scanner(fileReader);
 
             while (fileScan.hasNext()) {
                 String line = fileScan.nextLine();
@@ -97,17 +99,18 @@ public class CustomerInput extends Application {
                         statusText.setVisible(true);
                         resultText.setVisible(true);
                         uploadButton.setDisable(true);
-                    } catch (IllegalArgumentException e) {
+                    } catch (NumberFormatException e) { // Situation 1
                         e.printStackTrace();
                         uploadButton.setDisable(false);
                     }
                 }
             }
-
-
-            fileScan.close();
-        } catch (IOException e) {
+        } catch (IOException e) { // Situation 3
             e.printStackTrace();
+        } finally {
+            if (fileScan != null) {
+                fileScan.close();
+            }
         }
 
     }
