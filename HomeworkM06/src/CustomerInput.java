@@ -103,23 +103,22 @@ public class CustomerInput extends Application {
                         statusText.setText("Number of users created: "  + customers.size());
                         resultText.setText("Number of orders: "  + totalNumOrder);
                         uploadButton.setDisable(true);
-                    }
-                    catch (NumberFormatException | InvalidCustomerIdException e) { // Situation 1 & 2
-                        if (e.getClass().getCanonicalName() == "java.lang.NumberFormatException") {
+                    } catch (NumberFormatException | InvalidCustomerIdException e) { // Situation 1 & 2
+                        if (e.getClass().getCanonicalName().equals( "java.lang.NumberFormatException")) {
                             statusText.setText("Number input is not of type integer");
-                        } else if (e.getClass().getCanonicalName() == "InvalidCustomerIdException") {
+                        } else if (e.getClass().getCanonicalName().equals("InvalidCustomerIdException")) {
                             statusText.setText("Customer id contains invalid character: @");
                         }
                         e.printStackTrace();
                         uploadButton.setDisable(false);
-                    }
-                    finally {
+                    } finally {
                         statusText.setVisible(true);
                         resultText.setVisible(true);
                     }
                 }
             }
-        } catch (FileNotFoundException e) { // Situation 3
+        } catch (IOException e) { // Situation 3
+            statusText.setText("Error reading file. Please try again");
             e.printStackTrace();
         } finally {
             if (fileScan != null) {
