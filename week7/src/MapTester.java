@@ -1,12 +1,72 @@
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.*;
+
+@SuppressWarnings("Duplicates")
 public class MapTester {
     public static void main(String[] args) {
+        Map<String, EvictionNotice> evictionNoticeList = generateListFromFile();
 
+        println("Number of eviction records in list: " + evictionNoticeList.size());
     }
+
+    /**
+     * Create a hashmap of eviction notices from a csv file
+     * @return HashMap holding EvictionNotice objects
+     */
+    private static Map<String, EvictionNotice> generateListFromFile() {
+        Map<String, EvictionNotice> evictionNoticeList = new HashMap<>();
+
+        try(Scanner fileScan = new Scanner(new FileReader(new File("resources/data1.csv")))) {
+            String line = fileScan.nextLine(); // read column headers
+
+
+            try {
+                while (fileScan.hasNextLine()) {
+                    line = fileScan.nextLine();
+                    String[] lineArray = line.split(",", -1); // pass in -1 to capture railing empty strings
+
+                    String id = isBlank(lineArray[0]);
+                    String zip = isBlank(lineArray[1]);
+                    String fileDate = isBlank(lineArray[2]);
+                    // https://stackoverflow.com/questions/1538755/how-to-convert-string-object-to-boolean-object
+                    boolean illegalUse = Boolean.valueOf(isBlank(lineArray[3])); // if item is NA - boolean is false
+                    String neighborhood = isBlank(lineArray[4]);
+
+                    println(id + " | " +  zip + " | " + fileDate + " | " + illegalUse + " | " +  neighborhood);
+
+                    EvictionNotice evictionNotice = new EvictionNotice(id, zip, neighborhood, illegalUse, fileDate);
+                    evictionNoticeList.put(id, evictionNotice);
+                }
+            } catch (Exception e) {
+                println(">>>> Couldn't parse data ");
+                e.printStackTrace();
+            }
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return evictionNoticeList;
+    }
+
 
     /*
         HELPER FUNCTIONS
      */
 
+
+    /**
+     * Test if a string is blank or null and return original string or "NA" if string is empty or null
+     * @param str the string to test
+     * @return original string or "NA" if string is empty or null
+     */
+    public static String isBlank(String str) {
+        if (str == null || (str.length() == 0)) { str = "NA"; }
+        return str;
+    }
 
     public static void println(Object line) { System.out.println(line); }
 
