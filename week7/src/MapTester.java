@@ -38,13 +38,13 @@ public class MapTester {
                     String[] lineArray = line.split(",", -1); // pass in -1 to capture railing empty strings
 
                     String id = isBlank(lineArray[0]);
-                    String zip = isBlank(lineArray[1]);
+                    String zipCode = isBlank(lineArray[1]);
                     String fileDate = isBlank(lineArray[2]);
                     // https://stackoverflow.com/questions/1538755/how-to-convert-string-object-to-boolean-object
                     boolean illegalUse = Boolean.valueOf(isBlank(lineArray[3])); // if item is NA - boolean is false
                     String neighborhood = isBlank(lineArray[4]);
 
-                    EvictionNotice evictionNotice = new EvictionNotice(id, zip, neighborhood, illegalUse, fileDate);
+                    EvictionNotice evictionNotice = new EvictionNotice(id, zipCode, neighborhood, illegalUse, fileDate);
                     evictionNoticeMap.put(id, evictionNotice);
                 }
             } catch (Exception e) {

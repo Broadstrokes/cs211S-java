@@ -2,7 +2,7 @@ import java.util.Objects;
 
 public class EvictionNotice implements Comparable<EvictionNotice> {
 
-    private String id, zip, neighborhood, filingDate;
+    private String id, zipCode, neighborhood, filingDate;
     private boolean illegalUse;
 
 
@@ -11,9 +11,9 @@ public class EvictionNotice implements Comparable<EvictionNotice> {
      */
 
 
-    public EvictionNotice(String id, String zip, String neighborhood, boolean illegalUse, String filingDate) {
+    public EvictionNotice(String id, String zipCode, String neighborhood, boolean illegalUse, String filingDate) {
         this.id = id;
-        this.zip = zip;
+        this.zipCode = zipCode;
         this.neighborhood = neighborhood;
         this.illegalUse = illegalUse;
         this.filingDate = filingDate;
@@ -33,12 +33,12 @@ public class EvictionNotice implements Comparable<EvictionNotice> {
         this.id = id;
     }
 
-    public String getZip() {
-        return zip;
+    public String getZipCode() {
+        return zipCode;
     }
 
-    public void setZip(String zip) {
-        this.zip = zip;
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
     }
 
     public String getNeighborhood() {
@@ -75,7 +75,7 @@ public class EvictionNotice implements Comparable<EvictionNotice> {
     public String toString() {
         return "EvictionNotice{" +
                 "id='" + id + '\'' +
-                ", zip='" + zip + '\'' +
+                ", zipCode='" + zipCode + '\'' +
                 ", neighborhood='" + neighborhood + '\'' +
                 ", illegalUse=" + illegalUse +
                 ", filingDate=" + filingDate +
@@ -89,14 +89,14 @@ public class EvictionNotice implements Comparable<EvictionNotice> {
         EvictionNotice that = (EvictionNotice) other;
         return illegalUse == that.illegalUse &&
                 Objects.equals(id, that.id) &&
-                Objects.equals(zip, that.zip) &&
+                Objects.equals(zipCode, that.zipCode) &&
                 Objects.equals(neighborhood, that.neighborhood) &&
                 Objects.equals(filingDate, that.filingDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, zip, neighborhood, illegalUse, filingDate);
+        return Objects.hash(id, zipCode, neighborhood, illegalUse, filingDate);
     }
 
     @Override

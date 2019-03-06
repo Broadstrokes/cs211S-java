@@ -27,7 +27,7 @@ public class ListTester {
         printDashes();
         println("Queries for Data 1");
         printDashes();
-        // Query 1: Count of Eviction notice for a specific zipcode
+        // Query 1: Count of Eviction notice for a specific ZipCode
         println("Count of evictions notices for ZipCode 94109: " + mapOfEvictionCountByZipCode.get("94109"));
         // Query 2: Count of Eviction notice for a specific neighborhood
         println("Count of evictions notices for Tenderloin: " + mapOfEvictionCountByNeighborhood.get("Tenderloin"));
@@ -98,7 +98,7 @@ public class ListTester {
 
         while(itr.hasNext()) {
             EvictionNotice notice = itr.next();
-            String zipcode = notice.getZip();
+            String zipcode = notice.getZipCode();
 
             map.put(zipcode, map.getOrDefault(zipcode, 0) + 1);
         }
