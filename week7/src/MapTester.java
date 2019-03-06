@@ -6,17 +6,27 @@ import java.util.*;
 @SuppressWarnings("Duplicates")
 public class MapTester {
     public static void main(String[] args) {
-        Map<String, EvictionNotice> evictionNoticeList = generateListFromFile();
+        Map<String, EvictionNotice> evictionNoticeMap = generateMapFromFile();
 
-        println("Number of eviction records in list: " + evictionNoticeList.size());
+        println("Number of eviction records in the map: " + evictionNoticeMap.size());
+
+
+
+        /*  COMMENT OUT TO PRINT CONTENTS OF evictionNoticeMap
+
+        for (Map.Entry<String, EvictionNotice> entry : evictionNoticeMap.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue().toString());
+        }
+
+        */
     }
 
     /**
      * Create a hashmap of eviction notices from a csv file
      * @return HashMap holding EvictionNotice objects
      */
-    private static Map<String, EvictionNotice> generateListFromFile() {
-        Map<String, EvictionNotice> evictionNoticeList = new HashMap<>();
+    private static Map<String, EvictionNotice> generateMapFromFile() {
+        Map<String, EvictionNotice> evictionNoticeMap = new HashMap<>();
 
         try(Scanner fileScan = new Scanner(new FileReader(new File("resources/data1.csv")))) {
             String line = fileScan.nextLine(); // read column headers
@@ -34,10 +44,8 @@ public class MapTester {
                     boolean illegalUse = Boolean.valueOf(isBlank(lineArray[3])); // if item is NA - boolean is false
                     String neighborhood = isBlank(lineArray[4]);
 
-                    println(id + " | " +  zip + " | " + fileDate + " | " + illegalUse + " | " +  neighborhood);
-
                     EvictionNotice evictionNotice = new EvictionNotice(id, zip, neighborhood, illegalUse, fileDate);
-                    evictionNoticeList.put(id, evictionNotice);
+                    evictionNoticeMap.put(id, evictionNotice);
                 }
             } catch (Exception e) {
                 println(">>>> Couldn't parse data ");
@@ -49,7 +57,7 @@ public class MapTester {
             e.printStackTrace();
         }
 
-        return evictionNoticeList;
+        return evictionNoticeMap;
     }
 
 
