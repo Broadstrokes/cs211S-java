@@ -1,0 +1,8 @@
+Eviction ID,Eviction Notice Source Zipcode,File Date,Illegal Use,Neighborhoods - Analysis Boundaries
+M172475,94121,10/06/2017,false,Outer Richmond
+M172687,,10/23/2017,false,Inner Sunset
+M172665,94110,10/27/2017,false,Mission
+M172474,94109,10/06/2017,false,
+M172571,94109,10/16/2017,true,Tenderloin
+M172642,94110,10/19/2017,,Mission
+M172623,94131,,false,Glen Park
