@@ -6,9 +6,43 @@ import java.util.*;
 @SuppressWarnings("Duplicates")
 public class ListTester {
     public static void main(String[] args) {
-        List<EvictionNotice> evictionNoticeList = generateListFromFile();
 
-        println("Number of eviction records in list: " + evictionNoticeList.size());
+        println("");
+        printDashes();
+        println("Starting ListTester");
+        printDashes();
+
+
+        List<EvictionNotice> evictionNoticeList1 = generateListFromFile("resources/data1.csv");
+        List<EvictionNotice> evictionNoticeList2 = generateListFromFile("resources/data2.csv");
+
+        println("Number of eviction records in list generated from data1: " + evictionNoticeList1.size());
+        println("Number of eviction records in list generated from data2: " + evictionNoticeList2.size());
+
+        Map<String, Integer> mapOfEvictionCountByZipCode = generateMapOfEvictionCountsByZipCode(evictionNoticeList1);
+        Map<String, Integer> mapOfEvictionCountByNeighborhood = generateMapOfEvictionCountsByNeighborhood(evictionNoticeList1);
+
+
+        println("");
+        printDashes();
+        println("Queries for Data 1");
+        printDashes();
+        // Query 1: Count of Eviction notice for a specific zipcode
+        println("Evictions notices for ZipCode 94109: " + mapOfEvictionCountByZipCode.get("94109"));
+        // Query 2: Count of Eviction notice for a specific neighborhood
+        println("Evictions notices for Tenderloin: " + mapOfEvictionCountByNeighborhood.get("Tenderloin"));
+        // Query 3: Neighborhood with most notices
+        print("Neighborhood with most notices: ");
+        printNeighborhoodWithMostEvictionNotices(mapOfEvictionCountByNeighborhood);
+
+        println("");
+        printDashes();
+        println("Table of Eviction notice count by Neighborhood");
+        printDashes();
+
+        for (Map.Entry<String, Integer> entry : mapOfEvictionCountByNeighborhood.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue().toString());
+        }
     }
 
 
