@@ -8,12 +8,14 @@ import java.util.Scanner;
 public class ListTester {
     public static void main(String[] args) {
         List<EvictionNotice> evictionNoticeList = generateListFromFile();
+
+        println("Number of eviction records in list: " + evictionNoticeList.size());
     }
 
     private static List<EvictionNotice> generateListFromFile() {
         List<EvictionNotice> evictionNoticeList = new ArrayList<EvictionNotice>();
 
-        try(Scanner fileScan = new Scanner(new FileReader(new File("resources/data2.csv")))) {
+        try(Scanner fileScan = new Scanner(new FileReader(new File("resources/data1.csv")))) {
             String line = fileScan.nextLine(); // read column headers
 
 
@@ -30,6 +32,9 @@ public class ListTester {
                     String neighborhood = isBlank(lineArray[4]);
 
                     println(id + " | " +  zip + " | " + fileDate + " | " + illegalUse + " | " +  neighborhood);
+
+                    EvictionNotice evictionNotice = new EvictionNotice(id, zip, neighborhood, illegalUse, fileDate);
+                    evictionNoticeList.add(evictionNotice);
                 }
             } catch (Exception e) {
                 println(">>>> Couldnt parse data ");
@@ -49,12 +54,15 @@ public class ListTester {
      */
 
 
-
+    /**
+     * Test if a string is blank or null and return original string or "NA" if string is empty or null
+     * @param str the string to test
+     * @return original string or "NA" if string is empty or null
+     */
     public static String isBlank(String str) {
         if (str == null || (str.length() == 0)) { str = "NA"; }
         return str;
     }
-
 
     public static void println(Object line) { System.out.println(line); }
 
