@@ -28,11 +28,11 @@ public class ListTester {
         println("Queries for Data 1");
         printDashes();
         // Query 1: Count of Eviction notice for a specific zipcode
-        println("Evictions notices for ZipCode 94109: " + mapOfEvictionCountByZipCode.get("94109"));
+        println("Count of evictions notices for ZipCode 94109: " + mapOfEvictionCountByZipCode.get("94109"));
         // Query 2: Count of Eviction notice for a specific neighborhood
-        println("Evictions notices for Tenderloin: " + mapOfEvictionCountByNeighborhood.get("Tenderloin"));
+        println("Count of evictions notices for Tenderloin: " + mapOfEvictionCountByNeighborhood.get("Tenderloin"));
         // Query 3: Neighborhood with most notices
-        print("Neighborhood with most notices: ");
+        print("Neighborhood with most eviction notices: ");
         printNeighborhoodWithMostEvictionNotices(mapOfEvictionCountByNeighborhood);
 
         println("");
@@ -58,7 +58,6 @@ public class ListTester {
         try(Scanner fileScan = new Scanner(new FileReader(new File(filePath)))) {
             String line = fileScan.nextLine(); // read column headers
 
-
             try {
                 while (fileScan.hasNextLine()) {
                     line = fileScan.nextLine();
@@ -74,7 +73,7 @@ public class ListTester {
                     EvictionNotice evictionNotice = new EvictionNotice(id, zip, neighborhood, illegalUse, fileDate);
                     evictionNoticeList.add(evictionNotice);
                 }
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 println(">>>> Couldn't parse data ");
                 e.printStackTrace();
             }
