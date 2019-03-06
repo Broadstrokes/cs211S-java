@@ -1,11 +1,9 @@
-import java.util.Date;
 import java.util.Objects;
 
 public class EvictionNotice implements Comparable<EvictionNotice> {
 
-    private String id, zip, neighborhood;
+    private String id, zip, neighborhood, filingDate;
     private boolean illegalUse;
-    Date filingDate;
 
 
     /*
@@ -13,7 +11,7 @@ public class EvictionNotice implements Comparable<EvictionNotice> {
      */
 
 
-    public EvictionNotice(String id, String zip, String neighborhood, boolean illegalUse, Date filingDate) {
+    public EvictionNotice(String id, String zip, String neighborhood, boolean illegalUse, String filingDate) {
         this.id = id;
         this.zip = zip;
         this.neighborhood = neighborhood;
@@ -59,11 +57,11 @@ public class EvictionNotice implements Comparable<EvictionNotice> {
         this.illegalUse = illegalUse;
     }
 
-    public Date getFilingDate() {
+    public String getFilingDate() {
         return filingDate;
     }
 
-    public void setFilingDate(Date filingDate) {
+    public void setFilingDate(String filingDate) {
         this.filingDate = filingDate;
     }
 

@@ -2,7 +2,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -26,7 +25,8 @@ public class ListTester {
                     String id = isBlank(lineArray[0]);
                     String zip = isBlank(lineArray[1]);
                     String fileDate = isBlank(lineArray[2]);
-                    String illegalUse = isBlank(lineArray[3]);
+                    // https://stackoverflow.com/questions/1538755/how-to-convert-string-object-to-boolean-object
+                    boolean illegalUse = Boolean.valueOf(isBlank(lineArray[3])); // if item is NA - boolean is false
                     String neighborhood = isBlank(lineArray[4]);
 
                     println(id + " | " +  zip + " | " + fileDate + " | " + illegalUse + " | " +  neighborhood);
