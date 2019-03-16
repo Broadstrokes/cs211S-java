@@ -54,6 +54,19 @@ public class RandomBoxDriver {
 	}
 	
 
+	public static <T> List<T> pickMultipleWinners(RandomBox<T> items, int numPicks) {
+		List<T> picks = new ArrayList<>();
+		if (items.size() > 0) {
+			Set<T> setOfItems = new HashSet<>(items.getListOfRandomItems());
+			while (picks.size() < numPicks && picks.size() != setOfItems.size()) {
+				T item = items.drawWinner();
+				if (!picks.contains(item)) {
+					picks.add(item);
+				}
+			}
+		}
 
+		return picks;
+	}
 
 }
