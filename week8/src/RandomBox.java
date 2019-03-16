@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class RandomBox <T> {
-    List<T> listOfRandomItems;
+    private List<T> listOfRandomItems;
 
     /*
         Constructors
