@@ -18,7 +18,16 @@ public class RandomBoxDriver {
 		System.out.println("Winner: " + lottery.drawWinner());
 		
 		// SUGGESTION: CREATE A RANDOMBOX THAT HOLDS SOME OTHER TYPE- ANY CLASS YOU'VE GOT!
-		
+		System.out.println("\nMultiple Customers!\n");
+		RandomBox<Customer> customerDrawing = new RandomBox<>();
+		customerDrawing.addItem(new Customer("1", 3000));
+		customerDrawing.addItem(new Customer("2", 0));
+		customerDrawing.addItem(new Customer("3", 100));
+		customerDrawing.addItem(new Customer("4", 80000));
+		customerDrawing.addItem(new Customer("5", 20000));
+		List<Customer> customerWinners = pickMultipleWinners(customerDrawing, 2);
+		System.out.println(customerWinners);
+
 		// UNCOMMENT WHEN YOU WRITE YOUR STATIC METHOD
 
 		System.out.println("\nMultiple Winners!\n");
