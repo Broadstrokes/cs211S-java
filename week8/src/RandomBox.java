@@ -2,6 +2,7 @@ import java.util.*;
 
 public class RandomBox <T> {
     private List<T> listOfRandomItems;
+    private Set<T> setOfRandomItems;
 
     /*
         Constructors
@@ -9,6 +10,7 @@ public class RandomBox <T> {
 
     public RandomBox() {
         listOfRandomItems = new ArrayList<>();
+        setOfRandomItems = new HashSet<>();
     }
 
     public RandomBox(List<T> listOfRandomItems) {
@@ -25,6 +27,7 @@ public class RandomBox <T> {
      */
     public void addItem(T newItem) {
         listOfRandomItems.add(newItem);
+        setOfRandomItems.add(newItem);
     }
 
     /**
@@ -64,6 +67,14 @@ public class RandomBox <T> {
      */
     public List<T> getListOfRandomItems() {
         return listOfRandomItems;
+    }
+
+    /**
+     * Retrieve the set of unique items in the list
+     * @return set containing all the unique items
+     */
+    public Set<T> getSetOfRandomItems() {
+        return setOfRandomItems;
     }
 
     /*

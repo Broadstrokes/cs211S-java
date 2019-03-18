@@ -20,7 +20,7 @@ public class RandomBoxDriver {
 		// SUGGESTION: CREATE A RANDOMBOX THAT HOLDS SOME OTHER TYPE- ANY CLASS YOU'VE GOT!
 		
 		// UNCOMMENT WHEN YOU WRITE YOUR STATIC METHOD
-		/*
+
 		System.out.println("\nMultiple Winners!\n");
 		System.out.println("Random Name Drawing! 5 Unique Winners!");
 		List<String> nameWinners = pickMultipleWinners(nameDrawing, 5);
@@ -30,14 +30,17 @@ public class RandomBoxDriver {
 		System.out.println(numberWinners);
         RandomBox<String> uniqueNameBoxTest = new RandomBox<>();
         uniqueNameBoxTest.addItem("Winner1");
+//        uniqueNameBoxTest.addItem("Winner1");
         uniqueNameBoxTest.addItem("Winner2");
         uniqueNameBoxTest.addItem("Winner3");
         List<String> uniqueWinners = pickMultipleWinners(uniqueNameBoxTest, 3);
         System.out.println("List should contain Winner1, Winner2, and Winner3 (in any order)");
         System.out.println(uniqueWinners);
         System.out.println("Code should take some logical action but should NOT return a list with duplicate winners or enter an infinite loop.");
-        uniqueWinners = pickMultipleWinners(uniqueNameBoxTest, 4);
-		*/
+		uniqueWinners = pickMultipleWinners(uniqueNameBoxTest, 4);
+		System.out.println(uniqueWinners);
+
+
 
 	}
 	
@@ -57,8 +60,8 @@ public class RandomBoxDriver {
 	public static <T> List<T> pickMultipleWinners(RandomBox<T> items, int numPicks) {
 		List<T> picks = new ArrayList<>();
 		if (items.size() > 0) {
-			Set<T> setOfItems = new HashSet<>(items.getListOfRandomItems());
-			while (picks.size() < numPicks && picks.size() != setOfItems.size()) {
+			int numUniqueItems = items.getSetOfRandomItems().size();
+			while (picks.size() < numPicks && picks.size() != numUniqueItems) {
 				T item = items.drawWinner();
 				if (!picks.contains(item)) {
 					picks.add(item);
