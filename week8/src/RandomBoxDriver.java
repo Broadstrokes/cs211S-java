@@ -42,6 +42,7 @@ public class RandomBoxDriver {
 
 
 
+//		testprintEveryOtherInArray();
 	}
 	
 	public static void fillNames(RandomBox<String> wordBox) {
@@ -70,6 +71,37 @@ public class RandomBoxDriver {
 		}
 
 		return picks;
+	}
+
+
+	/**
+	 * Tests for the generic method printEveryOtherInArray
+	 */
+	public static void testprintEveryOtherInArray() {
+		Integer[] numsArrayOdd = {1 , 2, 3, 4, 5, 6, 7};
+		Integer[] numsArrayEven = {1 , 2, 3, 4, 5, 6};
+
+		String[] stringArrayOdd = {"a" , "b", "c", "d", "e"};
+		String[] stringArrayEven = {"a" , "b", "c", "d"};
+
+
+
+		printEveryOtherInArray(numsArrayOdd);
+		printEveryOtherInArray(stringArrayOdd);
+		printEveryOtherInArray(numsArrayEven);
+		printEveryOtherInArray(stringArrayEven);
+
+	}
+
+	/**
+	 * A generic method that can take an array of any type and print every other element of the array.
+	 * @param input array of type T
+	 * @param <T> type
+	 */
+	public static <T> void printEveryOtherInArray(T[] input){
+		for (int i = 0; i < input.length; i += 2) {
+			System.out.println(input[i]);
+		}
 	}
 
 }
