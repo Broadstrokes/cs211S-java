@@ -22,7 +22,6 @@ public interface DisplayLineInfo {
                     double distance = Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
 
                     output = String.format("%.1f", distance);
-
                 }
 
                 return output;
@@ -68,7 +67,7 @@ public interface DisplayLineInfo {
                     double y1 = line.getStartY();
                     double y2 = line.getEndY();
 
-                    boolean isALine = (x1 != x2) && (y1 != y2);
+                    boolean isALine = (x1 != x2) || (y1 != y2);
 
                     output = Boolean.toString(isALine);
                 }
