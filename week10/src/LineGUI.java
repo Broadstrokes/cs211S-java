@@ -41,7 +41,10 @@ public class LineGUI extends Application {
 
         midpointText = new Text("");
         midpointButton = new Button("Calculate Midpoint");
-        // YOUR CODE HERE- ADD A STATEMENT TO SET THE ACTION OF THE BUTTON   
+        midpointButton.setOnAction(evt -> {
+            DisplayLineInfo midpoint = DisplayLineInfo.createDisplayLineInfo(DisplayLineInfo.InfoType.MIDPOINT);
+            midpointText.setText(midpoint.getInfo(line));
+        });
         
         TilePane midpointPane = new TilePane(midpointButton, midpointText);
         midpointPane.setAlignment(Pos.CENTER);

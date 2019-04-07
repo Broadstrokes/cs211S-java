@@ -22,6 +22,13 @@ public interface DisplayLineInfo {
 
                 return output;
             };
+            case MIDPOINT: return (Line line) -> {
+                double x1 = line.getStartX();
+                double x2 = line.getEndX();
+                double y1 = line.getStartY();
+                double y2 = line.getEndY();
+                return "(" + (x1 + x2) / 2 + ", " + (y1 + y2) / 2 + ")";
+            };
         }
 
         return null;
