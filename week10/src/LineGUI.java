@@ -9,6 +9,8 @@ import javafx.scene.shape.*;
 import javafx.scene.text.*;
 import javafx.stage.*;
 
+import java.awt.event.ActionEvent;
+
 public class LineGUI extends Application {
 
     private Pane pane;
@@ -29,7 +31,10 @@ public class LineGUI extends Application {
               
         distanceText = new Text("");
         distanceButton = new Button("Calculate Distance");
-        // YOUR CODE HERE- ADD A STATEMENT TO SET THE ACTION OF THE BUTTON
+        distanceButton.setOnAction(evt -> {
+            DisplayLineInfo distance = DisplayLineInfo.createDisplayLineInfo(DisplayLineInfo.InfoType.DISTANCE);
+            distanceText.setText(distance.getInfo(line));
+        });
         
         TilePane distancePane = new TilePane(distanceButton, distanceText);
         distancePane.setAlignment(Pos.CENTER);
