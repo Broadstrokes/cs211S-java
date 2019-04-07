@@ -51,7 +51,10 @@ public class LineGUI extends Application {
         
         vertHorxText = new Text("");
         vertHorzButton = new Button("Determine Vertical/Horizontal");
-        // YOUR CODE HERE- ADD A STATEMENT TO SET THE ACTION OF THE BUTTON  
+        vertHorzButton.setOnAction(evt -> {
+            DisplayLineInfo verticalOrHorizontal = DisplayLineInfo.createDisplayLineInfo(DisplayLineInfo.InfoType.VERTHORZ);
+            vertHorxText.setText(verticalOrHorizontal.getInfo(line));
+        });
         
         TilePane vertHorzPane = new TilePane(vertHorzButton, vertHorxText);
         vertHorzPane.setAlignment(Pos.CENTER);

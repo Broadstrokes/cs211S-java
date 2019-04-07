@@ -29,6 +29,17 @@ public interface DisplayLineInfo {
                 double y2 = line.getEndY();
                 return "(" + (x1 + x2) / 2 + ", " + (y1 + y2) / 2 + ")";
             };
+            case VERTHORZ: return (Line line) -> {
+                double x1 = line.getStartX();
+                double x2 = line.getEndX();
+                double y1 = line.getStartY();
+                double y2 = line.getEndY();
+
+                boolean isVertical  = (x1 == x2);
+                boolean isHorizontal = (y1 == y2);
+
+                return "Vertical: " + isVertical +  " | Horizontal: " + isHorizontal;
+            };
         }
 
         return null;
