@@ -17,8 +17,8 @@ public class LineGUI extends Application {
     private BorderPane borderPane;
     private Circle startPoint, endPoint;
     private Line line;
-    private Button distanceButton, midpointButton, vertHorzButton;
-    private Text distanceText, midpointText, vertHorxText;
+    private Button distanceButton, midpointButton, vertHorzButton, isALineButton;
+    private Text distanceText, midpointText, vertHorxText, isALineText;
 
     private static final int CIRCLE_RADIUS = 5;
 
@@ -55,11 +55,23 @@ public class LineGUI extends Application {
             DisplayLineInfo verticalOrHorizontal = DisplayLineInfo.createDisplayLineInfo(DisplayLineInfo.InfoType.VERTHORZ);
             vertHorxText.setText(verticalOrHorizontal.getInfo(line));
         });
-        
+
         TilePane vertHorzPane = new TilePane(vertHorzButton, vertHorxText);
         vertHorzPane.setAlignment(Pos.CENTER);
 
-        VBox controlBox = new VBox(distancePane,midpointPane,vertHorzPane);
+
+        isALineText = new Text("");
+        isALineButton = new Button("Is a line");
+        isALineButton.setOnAction(evt -> {
+            DisplayLineInfo isALine = DisplayLineInfo.createDisplayLineInfo(DisplayLineInfo.InfoType.IS_A_LINE);
+            isALineText.setText(isALine.getInfo(line));
+        });
+
+        TilePane isALinePane = new TilePane(isALineButton, isALineText);
+        isALinePane.setAlignment(Pos.CENTER);
+
+
+        VBox controlBox = new VBox(distancePane,midpointPane,vertHorzPane, isALinePane);
         controlBox.setAlignment(Pos.CENTER);
         controlBox.setSpacing(10);
         borderPane.setBottom(controlBox);
@@ -97,7 +109,8 @@ public class LineGUI extends Application {
             distanceText.setText("");
             midpointText.setText(""); 
             vertHorxText.setText("");
-            
+            isALineText.setText("");
+
             // start the new line
             startPoint = new Circle(x,y,CIRCLE_RADIUS);
             pane.getChildren().add(startPoint);        

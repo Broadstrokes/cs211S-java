@@ -5,7 +5,7 @@ public interface DisplayLineInfo {
     String getInfo(Line line);
 
     public static enum InfoType {
-        DISTANCE, MIDPOINT, VERTHORZ;
+        DISTANCE, MIDPOINT, VERTHORZ, IS_A_LINE;
     }
 
     public static DisplayLineInfo createDisplayLineInfo(InfoType type) {
@@ -39,6 +39,17 @@ public interface DisplayLineInfo {
                 boolean isHorizontal = (y1 == y2);
 
                 return "Vertical: " + isVertical +  " | Horizontal: " + isHorizontal;
+            };
+
+            case IS_A_LINE: return (Line line) -> {
+                double x1 = line.getStartX();
+                double x2 = line.getEndX();
+                double y1 = line.getStartY();
+                double y2 = line.getEndY();
+
+                boolean isALine  = (x1 != x2) && (y1 != y2);
+
+                return Boolean.toString(isALine);
             };
         }
 
