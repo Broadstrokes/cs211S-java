@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @SuppressWarnings("Duplicates")
 public class ListTester {
@@ -12,8 +13,9 @@ public class ListTester {
         println("Starting ListTester");
         printDashes();
 
-
+        // data1.csv - Complete data set
         List<EvictionNotice> evictionNoticeList1 = generateListFromFile("resources/data1.csv");
+        // data2.csv - 9 dummy records to test parse logic
         List<EvictionNotice> evictionNoticeList2 = generateListFromFile("resources/data2.csv");
 
         println("Number of eviction records in list generated from data1: " + evictionNoticeList1.size());
@@ -21,6 +23,7 @@ public class ListTester {
 
         Map<String, Integer> mapOfEvictionCountByZipCode = generateMapOfEvictionCountsByZipCode(evictionNoticeList1);
         Map<String, Integer> mapOfEvictionCountByNeighborhood = generateMapOfEvictionCountsByNeighborhood(evictionNoticeList1);
+        Map<String, Long> mapOfEvictionCountByNeighborhoodUsingStream = generateMapOfEvictionCountsByNeighborhoodUsingStream(evictionNoticeList1);
 
 
         println("");
@@ -32,8 +35,10 @@ public class ListTester {
         // Query 2: Count of Eviction notice for a specific neighborhood
         println("Count of evictions notices for Tenderloin: " + mapOfEvictionCountByNeighborhood.get("Tenderloin"));
         // Query 3: Neighborhood with most notices
-        print("Neighborhood with most eviction notices: ");
+        print("Neighborhood with the most eviction notices: ");
         printNeighborhoodWithMostEvictionNotices(mapOfEvictionCountByNeighborhood);
+        printNeighborhoodWithMostEvictionNotices(mapOfEvictionCountByNeighborhood);
+
 
         println("");
         printDashes();
@@ -43,6 +48,17 @@ public class ListTester {
         for (Map.Entry<String, Integer> entry : mapOfEvictionCountByNeighborhood.entrySet()) {
             System.out.println(entry.getKey() + ": " + entry.getValue().toString());
         }
+
+        println("");
+        printDashes();
+        println("Table of Eviction notice count by Neighborhood USING STREAM");
+        printDashes();
+
+        for (Map.Entry<String, Long> entry : mapOfEvictionCountByNeighborhoodUsingStream.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue().toString());
+        }
+
+        printNeighborhoodWithMostEvictionNoticesUsingStream(mapOfEvictionCountByNeighborhoodUsingStream);
     }
 
 
@@ -126,6 +142,15 @@ public class ListTester {
     }
 
     /**
+     * Generate a map of count of eviction notices by neighborhood
+     * @param list list containing EvictionNotice objects
+     * @return a map of count of eviction notices by neighborhood
+     */
+    public static Map<String, Long> generateMapOfEvictionCountsByNeighborhoodUsingStream(List<EvictionNotice> list) {
+        return list.stream().collect(Collectors.groupingBy(EvictionNotice::getNeighborhood, Collectors.counting()));
+    }
+
+    /**
      * Display in console the neighborhood with the most eviction notices
      * @param map map of eviction notice counts by neighborhood
      */
@@ -147,6 +172,14 @@ public class ListTester {
 
         print(neighborhood + ": " + max);
         println(" | Range for notice count: [" + min + ", " + max + "]");
+    }
+
+    /**
+     * Display in console the neighborhood with the most eviction notices
+     * @param map map of eviction notice counts by neighborhood
+     */
+    public static void printNeighborhoodWithMostEvictionNoticesUsingStream(Map<String, Long> map) {
+        System.out.println(map.entrySet().stream().max(Map.Entry.comparingByValue()).get());
     }
 
     /*
