@@ -3,6 +3,7 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
 import java.util.stream.Stream;
@@ -123,14 +124,20 @@ public class HomeworkM11Streams {
 		System.out.println("\nQ12 Should print: " + "\n\tpizzazz worth 45 points"+"\n\tpizazz worth 35 points" +"\n\tjazzily worth 35 points" +
 				"\n\tquizzed worth 35 points" + "\n\tjacuzzi worth 34 points" + "\n\tquizzer worth 34 points" +
 				"\n\tquizzes worth 34 points" + "\n\tjazzy worth 33 points" + "\n\tjazzing worth 33 points" );
-		// YOUR ANSWER HERE
-//		Map<String, Integer> stringScoreMap =
-//				scrabbleWords
-//				.stream()
-//				.limit(20)
-//				.collect(Collectors.toList(word -> word.toString(), word -> {
-//					return getScore(word);
-//				}));
+
+		System.out.println("\n\n");
+		Map<String, Integer> stringScoreMap = scrabbleWords
+				.stream()
+				.collect(Collectors.toMap(Function.identity(), word -> getScore(word)));
+
+		stringScoreMap
+				.entrySet()
+				.stream()
+				.sorted((entrySet1, entrySet2) -> Integer.compare(entrySet2.getValue(), entrySet1.getValue())).limit(9)
+				.forEach(entrySet -> {
+					System.out.println("\t"+entrySet.getKey() + " worth " + entrySet.getValue() + " points");
+				});
+
 
 
 		// EXTRA CREDIT
@@ -147,6 +154,11 @@ public class HomeworkM11Streams {
 
 }
 
+	/**
+	 * Calculate score of a scrabble word
+	 * @param word word that needs the score
+	 * @return scrabble score for the given word
+	 */
 	private static int getScore(String word) {
 		int score = 0;
 		for (int i = 0; i < word.length(); i++) {
