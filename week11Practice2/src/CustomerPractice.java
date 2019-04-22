@@ -7,8 +7,12 @@ public class CustomerPractice {
 	private Gender gender;
 	private Address address;
 	private List<Order> orders;
-	
-	
+
+	public CustomerPractice(String firstName, int age) {
+		this.firstName = firstName;
+		this.age = age;
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}
