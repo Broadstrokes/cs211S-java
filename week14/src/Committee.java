@@ -1,5 +1,13 @@
 import java.time.LocalDate;
 
+/**
+ * Write an immutable class to describe a Committee. A committee object consists of:
+ *
+ * String name
+ * int numMemberes
+ * Member committeeChair (download the Member class from here. NB: this class is not immutable!)
+ * LocalDate formationDate
+ */
 public final class Committee {
     private final String name;
     private final int numMembers;
