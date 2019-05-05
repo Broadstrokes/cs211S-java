@@ -15,8 +15,8 @@ public class FoodTester {
         foodList.add(new Food("Fried Green Tomatoes", 2, 1));
 
         // INITIALIZE AND START YOUR THREADS HERE!
-        Thread cooker = null;
-        Thread server = null;
+        Thread cooker = new Thread(new CookThread(foodList));
+        Thread server = new Thread(new ServerThread());
 
 
         int programTimeCounter = 0;
