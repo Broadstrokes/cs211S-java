@@ -20,7 +20,7 @@ public class FoodTester {
 
         // INITIALIZE AND START YOUR THREADS HERE!
         Thread cooker = new Thread(new CookThread(foodList, queue));
-        Thread server = new Thread(new ServerThread(queue));
+        Thread server = new Thread(new ServeThread(queue));
 
         cooker.start();
         server.start();

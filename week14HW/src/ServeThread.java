@@ -1,10 +1,10 @@
 import java.util.concurrent.BlockingQueue;
 
-public class ServerThread implements Runnable {
+public class ServeThread implements Runnable {
     private int numServed = 0;
     private BlockingQueue<Food> queue;
 
-    public ServerThread(BlockingQueue<Food> queue) {
+    public ServeThread(BlockingQueue<Food> queue) {
         this.queue = queue;
     }
 
