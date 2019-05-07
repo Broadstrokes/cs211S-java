@@ -14,14 +14,21 @@ public class FoodTester {
         foodList.add(new Food("Bread", 1, 1));
         foodList.add(new Food("Fried Green Tomatoes", 2, 1));
 
-        // INITIALIZE AND START YOUR THREADS HERE!
-        Thread cooker = new Thread(new CookThread(foodList));
-        Thread server = new Thread(new ServerThread());
+        BlockingQueue<Food> queue = new ArrayBlockingQueue<>(3); // 1 would be analogous to the NumberBox example
 
+        List<Food> foodListCopy = new ArrayList<>(foodList);
+
+        // INITIALIZE AND START YOUR THREADS HERE!
+        Thread cooker = new Thread(new CookThread(foodList, queue));
+        Thread server = new Thread(new ServerThread(queue));
+
+        cooker.start();
+        server.start();
 
         int programTimeCounter = 0;
-        while (Thread.activeCount() > 1) {
+        while (Thread.activeCount() > 2) {
             System.out.println("TIME " + programTimeCounter);
+
             programTimeCounter++;
             try {
                 Thread.sleep(1000);
@@ -30,13 +37,14 @@ public class FoodTester {
             }
         }
 
+
         // USE STREAMS HERE ON THE INITIAL LIST!
         // NOTE: THIS PART HAS NOTHING TO DO WITH THE THREADS- JUST MORE STREAM PRACTICE! :)
         // USE METHOD REFERENCES!
         int totalCookTime = -1;
         int totalServeTime = -1;
-        System.out.println("Total Cook Time = " + totalCookTime);
-        System.out.println("Total Serve Time = " + totalServeTime);
+        System.out.println("Total Cook Time = " + foodListCopy.stream().mapToInt(Food::getCookTime).sum());
+        System.out.println("Total Serve Time = " + foodListCopy.stream().mapToInt(Food::getServeTime).sum());
         System.out.println("Program Time = " + programTimeCounter);
 
     }
