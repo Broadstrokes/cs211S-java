@@ -1,5 +1,4 @@
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class ServerThread implements Runnable {
     private int numServed = 0;
