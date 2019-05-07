@@ -14,7 +14,7 @@ public class FoodTester {
         foodList.add(new Food("Bread", 1, 1));
         foodList.add(new Food("Fried Green Tomatoes", 2, 1));
 
-        BlockingQueue<Food> queue = new ArrayBlockingQueue<>(3); // 1 would be analogous to the NumberBox example
+        BlockingQueue<Food> queue = new ArrayBlockingQueue<>(3);
 
         List<Food> foodListCopy = new ArrayList<>(foodList);
 
