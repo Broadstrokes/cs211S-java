@@ -1,12 +1,17 @@
 import java.lang.annotation.*;
 import java.lang.reflect.*;
+import java.util.Arrays;
 
 public class Address {
-	
-	private String street;	
+
+	@ProperLength
+	private String street;
 	private String street2;
+	@ProperLength(maxLength = 40)
 	private String city;
+	@ProperLength(minLength = 2, maxLength = 2)
 	private String state;
+	@ProperLength(minLength = 5, maxLength = 5)
 	private String zip;
 
 	public Address(String street, String street2, String city, String state, String zip) throws IllegalArgumentException  {
@@ -18,7 +23,6 @@ public class Address {
 		
 		validateLengths();
 	}
-	
 	private void validateLengths() throws IllegalArgumentException {
 		// YOUR CODE HERE
 	}
