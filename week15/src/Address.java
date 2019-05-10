@@ -23,8 +23,22 @@ public class Address {
 		
 		validateLengths();
 	}
+
 	private void validateLengths() throws IllegalArgumentException {
-		// YOUR CODE HERE
+		Field[] fields = this.getClass().getDeclaredFields();
+		Arrays.stream(fields).forEach(field -> {
+			if (field.isAnnotationPresent(ProperLength.class)) {
+				ProperLength annotation = field.getAnnotation(ProperLength.class);
+				try {
+					String fieldValue = field.get(this).toString();
+					if (fieldValue.length() < annotation.minLength() || fieldValue.length() > annotation.maxLength()) {
+						throw new IllegalArgumentException(String.format(field.getName() + " has invalid length!"));
+					}
+				} catch (IllegalAccessException | IllegalAccessError e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 	
 	@Override
